@@ -1,41 +1,52 @@
 import { Component } from '@angular/core';
-import { heroe } from './hero'
 
-
-export class Super {
-	id: number;
-	nombre: string;
+export class Hero {
+  id: number;
+  name: string;
 }
 
-
-export class AppComponent {
-	nicks = [
-	new heroe(1, 'AlphaFrag'),
-	new heroe(2, 'Letal'),
-	new heroe(3, 'Header'),
-	new heroe(4, 'RagFurioso'),
-	new heroe(5, 'LostSoul')
-	]
-
-	supra: Super = {
-		id: 1,
-		nombre: 'Cacaman'
-	}
-
-	nick = supra.name;
-}
+const HEROES: Hero[] = [
+	{ id: 11, name: 'Mr. Nice'},
+	{ id: 12, name: 'Narco' }
+	{ id: 13, name: 'Bombasto' },
+	{ id: 14, name: 'Celeritas' },
+	{ id: 15, name: 'Magneta' },
+	{ id: 16, name: 'RubberMan' },
+	{ id: 17, name: 'Dynama' },
+	{ id: 18, name: 'Dr IQ' },
+	{ id: 19, name: 'Magma' },
+	{ id: 20, name: 'Tornado' }
+];
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Yo soy {{nick}}</h1>
-  Mis Nick preferidos son
- <ul>
- 	<li *ngFor="let nick of nicks">{{nick.name}}</li>
- </ul>
- <p *ngIf="nicks.length > 2">Demasiados heroes ({{nicks.length}})</p>
- <br>
- <label>Cambiar nombre heroe
- <input  [(ngModel)]="supra.nombre" placeholder="Nombre">
- </label>
- `
+  template: `
+    <h2>Heroes</h2>
+    <ul class="heroes">
+    	<li *ngFor="let hero of heroes" (click)="onSelect(hero)"
+    	[class.selected]="hero === selectedHero">
+    		<span class="badge">{{hero.id}}</span> {{hero.name}}
+    	</li>
+    </ul>
+
+    <div *ngIf="selectedHero">
+	    <h2>{{selectedHero.name}} details!</h2>
+	    <div><label>ID: </label>{{selectedHero.id}}</div>
+	    <div>
+	    	<label>Name: </label>
+	    	<input [(ngModel)]="selectedHero.name" placeholder="Nombre" />
+	    </div>
+    </div>
+    `
+    }
 })
+
+export class AppComponent {
+  heroes = HEROES;
+  selectedHero: Hero;
+
+  onSelect(hero: Hero): void {
+  	this.selectedHero = hero;
+  }
+
+}

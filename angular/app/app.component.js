@@ -1,26 +1,46 @@
 "use strict";
-var hero_1 = require('./hero');
-var Super = (function () {
-    function Super() {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var Hero = (function () {
+    function Hero() {
     }
-    return Super;
+    return Hero;
 }());
-exports.Super = Super;
+exports.Hero = Hero;
+var HEROES = [
+    { id: 11, name: 'Mr. Nice' },
+    { id: 12, name: 'Narco' },
+    { id: 13, name: 'Bombasto' },
+    { id: 14, name: 'Celeritas' },
+    { id: 15, name: 'Magneta' },
+    { id: 16, name: 'RubberMan' },
+    { id: 17, name: 'Dynama' },
+    { id: 18, name: 'Dr IQ' },
+    { id: 19, name: 'Magma' },
+    { id: 20, name: 'Tornado' }
+];
 var AppComponent = (function () {
     function AppComponent() {
-        this.nicks = [
-            new hero_1.heroe(1, 'AlphaFrag'),
-            new hero_1.heroe(2, 'Letal'),
-            new hero_1.heroe(3, 'Header'),
-            new hero_1.heroe(4, 'RagFurioso'),
-            new hero_1.heroe(5, 'LostSoul')
-        ];
-        this.supra = {
-            id: 1,
-            nombre: 'Cacaman'
-        };
-        this.nick = supra.name;
+        this.heroes = HEROES;
     }
+    AppComponent.prototype.onSelect = function (hero) {
+        this.selectedHero = hero;
+    };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            template: "\n    <h2>Heroes</h2>\n    <ul class=\"heroes\">\n    \t<li *ngFor=\"let hero of heroes\" (click)=\"onSelect(hero)\"\n    \t[class.selected]=\"hero === selectedHero\">\n    \t\t<span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n    \t</li>\n    </ul>\n\n    <div *ngIf=\"selectedHero\">\n\t    <h2>{{selectedHero.name}} details!</h2>\n\t    <div><label>ID: </label>{{selectedHero.id}}</div>\n\t    <div>\n\t    \t<label>Name: </label>\n\t    \t<input [(ngModel)]=\"selectedHero.name\" placeholder=\"Nombre\" />\n\t    </div>\n    </div>\n    "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AppComponent);
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
