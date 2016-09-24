@@ -3,14 +3,15 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "target": "es5",
-        "module": "system",
+        "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": false,
-        "sourceMap": false,
-        "outDir": "built",
         "sourceMap": false
     },
     "exclude": [
-        "node_modules"
-    ]
+        "node_modules",
+        "typings/globals/core-js/index.d.ts",
+    	"typings/main.d.ts"
+    ],
+    "compileOnSave": false
 }
