@@ -1,9 +1,9 @@
 "use strict";
-var heroe = (function () {
-    function heroe(id, name) {
+var Hero = (function () {
+    function Hero(id, name) {
         this.id = id;
         this.name = name;
     }
-    return heroe;
+    return Hero;
 }());
-exports.heroe = heroe;
+exports.Hero = Hero;
